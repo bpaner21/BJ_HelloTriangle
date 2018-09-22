@@ -1,10 +1,10 @@
-﻿// MultiPoints.js
+﻿// HelloTriangle.js
+
 // Vertex shader program
 var VSHADER_SOURCE =
     'attribute vec4 a_Position;\n' +
     'void main() {\n' +
     ' gl_Position = a_Position;\n' +
-    ' gl_PointSize = 10.0;\n' +
     '}\n';
 
 // Fragment shader program
@@ -13,7 +13,8 @@ var FSHADER_SOURCE =
     ' gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n' +	// Set the color
     '}\n';
 
-function main() {
+function main()
+{
     // Retrieve <canvas> element 
     var canvas = document.getElementById('webgl');
 
@@ -42,12 +43,14 @@ function main() {
     // Clear <canvas>
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    // Draw three points
-    gl.drawArrays(gl.POINTS, 0, n);	// n is 3
-}
+    // Draw a triangle
+    gl.drawArrays(gl.TRIANGLES, 0, n);	// n is 3
 
-function initVertexBuffers(gl) {
-    var vertices = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);
+}   // main()
+
+function initVertexBuffers(gl)
+{
+    var vertices = new Float32Array([0.0, 0.5,      -0.5, -0.5,     0.5, -0.5]);
     var n = 3;	// The number of vertices
 
     // Create a buffer object
@@ -77,4 +80,5 @@ function initVertexBuffers(gl) {
     gl.enableVertexAttribArray(a_Position);
 
     return n;
-}
+
+}   // initVertixBuffers()
