@@ -1,6 +1,9 @@
 ﻿// HelloTriangle.js
 
 // Vertex shader program
+// Declares a new vec4 and assigns it to gl_Position
+// Because a_Position has only been declared
+// a_Position and gl_Position have a default value of (0,0,0,1)
 var VSHADER_SOURCE =
     'attribute vec4 a_Position;\n' +
     'void main() {\n' +
@@ -8,6 +11,7 @@ var VSHADER_SOURCE =
     '}\n';
 
 // Fragment shader program
+// Sets the color of the shader to red, with full opacity
 var FSHADER_SOURCE =
     'void main() {\n' +
     ' gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n' +	// Set the color
@@ -16,24 +20,30 @@ var FSHADER_SOURCE =
 function main()
 {
     // Retrieve <canvas> element 
+    // Initilializes the variable 'canvas' as equal to the canvas element 'webgl' form the .html page
     var canvas = document.getElementById('webgl');
 
     // Get the rendering context for WebGL
+    // Initializes the rendering context for this program as a canvas
+    // This helps the program determine whether to use 2D or 3D drawing techniques
     var gl = getWebGLContext(canvas);
-    if (!gl) {
+    if (!gl)
+    {
         console.log('Failed to get the rendering context for WebGL');
         return;
-    }
+    }               // Validates that the context was properly acquired
 
     // Initialize shaders
-    if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
+    if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE))
+    {
         console.log('Failed to initialize shaders.');
         return;
     }
 
     // Set the positions of the vertices
     var n = initVertexBuffers(gl);
-    if (n < 0) {
+    if (n < 0)
+    {
         console.log('Failed to set the positions of the vertices');
     }
 
@@ -55,7 +65,8 @@ function initVertexBuffers(gl)
 
     // Create a buffer object
     var vertexBuffer = gl.createBuffer();
-    if (!vertexBuffer) {
+    if (!vertexBuffer)
+    {
         console.log('Failed to create the buffer object');
         return -1;
     }
@@ -68,7 +79,8 @@ function initVertexBuffers(gl)
 
     // Get the storage location of attribute variable
     var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-    if (a_Position < 0) {
+    if (a_Position < 0)
+    {
         console.log('Failed to get the storage location of a_Position');
         return;
     }
